@@ -271,3 +271,28 @@ small {
 		font-size: 12px;
 	}
 }
+
+@media only screen and (max-height: 670px) {
+	.title {
+		padding: 30px 15px;
+	}
+	.eco, .comf, #get_temp {
+		padding: 20px 15px;
+	}
+	.lower-border, .up-border {
+		margin-top: 25px;
+	}
+}
+
+@media only screen and (max-height: 550px) {
+	.title {
+		display: none;
+	}
+	.middle {
+		margin-top: 25px;
+	}
+	
+	.lower-border, .up-border {
+		margin-top: 15px;
+	}
+}
