@@ -272,7 +272,7 @@ small {
 	}
 }
 
-@media only screen and (max-height: 670px) {
+@media only screen and (max-height: 650px) {
 	.title {
 		padding: 30px 15px;
 	}
