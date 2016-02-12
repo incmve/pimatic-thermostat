@@ -8,6 +8,7 @@
 	
 	//Thermostaat
 	$therm['id'] = 'thermostaat'; 		// ID of the thermostat device
+	$therm['title'] = 'thermostaat';        // What is the name on the screen
 	$therm['min'] = 5;					// Min temperature
 	$therm['max'] = 30;					// Max temperature
 	$therm['eco'] = 10;					// Eco temperature

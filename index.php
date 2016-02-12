@@ -67,7 +67,7 @@
 		<div style="display: none;" id="light"></div> 
 		<div class="content" unselectable="on" onselectstart="return false;" onmousedown="return false;">
 			<div class="title slideDown">
-				Thermostat
+				<?php echo($therm['title']); ?>
 			</div>
 			
 			<div class="middle fadeIn">
@@ -93,10 +93,10 @@
 			<div class="clear"></div>
 			<div class="bottom fadeInn">
 				<div class="eco">
-					Eco modus
+					Eco modus<br><?php echo("(".$therm['eco']." &deg;C)"); ?>
 				</div>
 				<div class="comf">
-					Comfort
+					Comfort<br><?php echo("(".$therm['comf']." &deg;C)"); ?>
 				</div>
 				<div id="get_temp">
 		
