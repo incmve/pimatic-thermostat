@@ -9,14 +9,18 @@ body {
 	-ms-user-select:none;
 	user-select:none;
 	-o-user-select:none;
-	max-width: 400px;
 	margin: 0 auto;
 	background-color: #fff;
 	padding: 0 15px;
-	border-radius: 15px;
+	height: 100vh;
 	background-image: linear-gradient(89deg, #E2E1E0 0%, #FDFDFD 50%, #E2E1E0 100%);
 	overflow: hidden;
 	box-shadow: 0px 0px 10px rgba(0,0,0,.5);
+}
+
+.contain {
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .title {
@@ -174,6 +178,9 @@ small {
 	margin-right: -15px;
 	border-top: 4px solid #E2E1E0;
 	font-size: 14px;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }
 
 .eco, .comf, #get_temp {
@@ -263,22 +270,31 @@ small {
 	font-size: 40px;
 }
 
+@media only screen and (min-width: 750px) {
+    .contain {
+        max-width: 1000px;
+    }
+    
+    .down-border, .up-border {
+        margin-top: 0;
+    }
+}
+
 @media only screen and (max-width: 420px) {
 	.content {
 		margin-top: 0px;
 		border-radius: 0px;
 		height: 100vh;
 	}
-	.bottom {
-		position: absolute;
-		bottom: 0;
-		width: 100%;
-	}
 }
 @media only screen and (max-width: 330px) {
 	.bottom {
 		font-size: 12px;
 	}
+	#get_temp {
+        padding: 38px 15px;
+        height: 8px;
+    }
 }
 
 @media only screen and (max-height: 630px) {
@@ -289,7 +305,8 @@ small {
 		padding: 20px 15px;
 	}
 	#get_temp {
-        padding: 27px 15px;
+        padding: 29px 15px;
+        height: 10px;
     }
 	.down-border, .up-border {
 		margin-top: 25px;
