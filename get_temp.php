@@ -6,5 +6,5 @@
 	if(!$value){
 		$value = "- ";
 	}
-	echo $value.'&deg;C<BR>&nbsp;'; // Add line-feed and space to correct for second line in eco and comf
+	echo $value.' &deg;C<BR>&nbsp;'; // Add line-feed and space to correct for second line in eco and comf
 ?>
