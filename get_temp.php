@@ -1,10 +1,19 @@
 <?php	
 	include('config.php');
 	include('inc/functions.php');
-	$value = getValue($temp['id'].'.temperature');
+	$value = 0;
 	
-	if(!$value){
-		$value = "- ";
+	if(isset($_GET['sensor'])){
+    	$value = getValue($temp['id'].'.temperature'); 	
+    	if(!$value){
+    		$value = "- ";
+    	}
 	}
-	echo $value.' &deg;C<BR>&nbsp;'; // Add line-feed and space to correct for second line in eco and comf
+	
+	if(isset($_GET['setPoint'])){
+    	$value = getValue($therm['id'].'.temperatureSetpoint');
+    	
+	}
+	
+	echo $value;
 ?>

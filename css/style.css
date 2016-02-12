@@ -115,7 +115,7 @@ small {
 	
 }
 
-.up, .lower {
+.up, .down {
 	background-image: linear-gradient(-25deg, #DCDBDA 0%, #FEFEFE 100%);
 	display: inline-block;
 	padding: 5px;
@@ -134,10 +134,10 @@ small {
 	height: 31px;
 }
 
-.lower {
+.down {
 	height: 32px;
 }
-.lower-border {
+.down-border {
 	background-color: #7EA0A7;
 	display: inline-block;
 	height: 41px;
@@ -157,7 +157,7 @@ small {
 	border: 4px solid #E2E1E0;
 }
 
-.up:hover, .lower:hover {
+.up:hover, .down:hover {
 	background-image: linear-gradient(-175deg, #DCDBDA 0%, #FEFEFE 100%);
 }
 
@@ -182,6 +182,15 @@ small {
 	text-align: center;
 	font-weight: bold;
 	text-transform: uppercase;
+}
+
+#get_temp {
+    padding: 37px 15px;
+}
+
+.glass {
+    opacity: .5;
+    font-size: smaller;
 }
 
 .lights {
@@ -272,14 +281,17 @@ small {
 	}
 }
 
-@media only screen and (max-height: 650px) {
+@media only screen and (max-height: 630px) {
 	.title {
 		padding: 30px 15px;
 	}
 	.eco, .comf, #get_temp {
 		padding: 20px 15px;
 	}
-	.lower-border, .up-border {
+	#get_temp {
+        padding: 27px 15px;
+    }
+	.down-border, .up-border {
 		margin-top: 25px;
 	}
 }
@@ -292,7 +304,7 @@ small {
 		margin-top: 25px;
 	}
 	
-	.lower-border, .up-border {
+	.down-border, .up-border {
 		margin-top: 15px;
 	}
 }

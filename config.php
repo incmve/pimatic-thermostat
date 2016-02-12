@@ -5,13 +5,11 @@
 	$pimatic['host'] = '192.168.1.5';	// Pimatic IP address
 	$pimatic['port'] = 80;				// Pimatic port
 	$pimatic['ssl']  = false;			// Use https (SSL)
-	$pimatic['poll'] = 2500;          	// Polling interval
+	$pimatic['poll'] = 5000;          	// Polling interval
 	
 	//Thermostaat
 	$therm['id'] = 'thermostaat'; 		// ID of the thermostat device
-	$therm['title'] = 'thermostaat';        // What is the name on the screen
-	$therm['min'] = 5;					// Min temperature
-	$therm['max'] = 30;					// Max temperature
+	$therm['title'] = 'thermostaat';    // What is the name on the screen
 	$therm['eco'] = 10;					// Eco temperature
 	$therm['comf'] = 20;				// Comfort temperature
 	

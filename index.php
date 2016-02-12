@@ -18,7 +18,7 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0" />
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<link rel="apple-touch-icon" href="icon.png">
-		<title>Thermostat</title>
+		<title><?php echo($therm['title']); ?></title>
 		<preference name="DisallowOverscroll" value="true" />	
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 		<script src="js/jquery.min.js"></script>
@@ -27,44 +27,83 @@
 		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8">
 		<link rel="stylesheet" href="css/animations.css" type="text/css" media="screen" charset="utf-8">
 		<script>
+			
 			$(function() {
 			    FastClick.attach(document.body);
 			});
-			var setTemp = 0;
+			
+			var setTemp = <?php echo getValue($therm['id'].'.temperatureSetpoint'); ?>;
+			var timer;
+			
 			$(document).ready(function() {
+				
 				poll();
+
 				$(".up").click(function() {	
-					$( "#set_temp" ).load( "set_temp.php?temp=up" );
+    				setTemp = setTemp + .5;
+					updateTemp();
 				});
-				$(".lower").click(function() {		
-					$( "#set_temp" ).load( "set_temp.php?temp=down" );
+				$(".down").click(function() {		
+					setTemp = setTemp - .5;
+					updateTemp();
 				});
-				$(".eco").click(function() {		
-					$( "#set_temp" ).load( "set_temp.php?temp=eco" );
+				
+				// MODES
+				$(".eco").click(function() {
+    				setTemp = <?php echo $therm['eco']; ?>;		
+					updateTemp();
 				});
 				$(".comf").click(function() {		
-					$( "#set_temp" ).load( "set_temp.php?temp=comf" );
+					setTemp = <?php echo $therm['comf']; ?>;		
+					updateTemp();
 				});
 				
 				// LIGHTS
 				$(".lights-on img").click(function() {		
-					$( "#light" ).load( "lights.php?turn=on" );
+					$( "#dump" ).load( "lights.php?turn=on" );
 				});
 				
 				$(".lights-off img").click(function() {		
-					$( "#light" ).load( "lights.php?turn=off" );
+					$( "#dump" ).load( "lights.php?turn=off" );
 				});
 				
 			});
-			function poll(){
-			    $( "#get_temp" ).load( "get_temp.php" ); 
-			    $( "#set_temp" ).load( "set_temp.php" ); 
+			
+			function updateTemp(){
+    			
+    			if(setTemp > 30) {
+        			setTemp = 30;
+    			}
+    			if(setTemp < 5) {
+        			setTemp = 5;
+    			}
+    			
+    			$("#set_temp .val").html(showTemp());   			
+    			clearTimeout(timer);
+    			timer = setTimeout(function(){
+                    $("#dump").load( "set_temp.php?temp=" + setTemp );
+                }, 1500);
+                
 			}
-			setInterval(function(){ poll(); }, <?php if( $pimatic['poll'] ) { echo $pimatic['poll']; } else { echo 5000; } ?>);
+			
+			function showTemp(){
+                return Math.floor(setTemp) + '<small>' + String(setTemp.toFixed(1)).replace(Math.floor(setTemp), '') + '</small>';
+			}
+			
+			function poll(){
+			    $("#get_temp .val").load( "get_temp.php?sensor" );
+			    $.get( "get_temp.php?setPoint", function( data ) {
+                  setTemp = parseFloat(data);
+                });
+			    $("#set_temp .val").html(showTemp());
+			}
+			
+			setInterval(function(){ poll(); }, <?php echo $pimatic['poll']; ?>);
+		
 		</script>
 	</head>
 	<body>
-		<div style="display: none;" id="light"></div> 
+		<div style="display: none;" id="dump"></div> 
 		<div class="content" unselectable="on" onselectstart="return false;" onmousedown="return false;">
 			<div class="title slideDown">
 				<?php echo($therm['title']); ?>
@@ -73,12 +112,15 @@
 			<div class="middle fadeIn">
 				<div class="grad-border">
 					<div class="fadeIn" id="set_temp">
+    					<span class="set">SET</span>
+    					<span class="val"></span>
+    					<span class="deg">&deg;C</span>
 					</div>
 				</div>
 			</div>
 			<div class="left slideRight">
-				<div class="lower-border">
-					<div class="lower">
+				<div class="down-border">
+					<div class="down">
 						-
 					</div>
 				</div>
@@ -93,13 +135,14 @@
 			<div class="clear"></div>
 			<div class="bottom fadeInn">
 				<div class="eco">
-					Eco modus<br><?php echo("(".$therm['eco']." &deg;C)"); ?>
+					Eco modus<br/><span class="glass"><?php echo("(".$therm['eco']." &deg;C)"); ?></span>
 				</div>
 				<div class="comf">
-					Comfort<br><?php echo("(".$therm['comf']." &deg;C)"); ?>
+					Comfort<br/><span class="glass"><?php echo("(".$therm['comf']." &deg;C)"); ?></span>
 				</div>
 				<div id="get_temp">
-		
+                    <span class="val"></span>
+                    &deg;C
 				</div>
 				<div class="lights">
 					<div class="lights-off">
