@@ -60,7 +60,7 @@
 			    $( "#get_temp" ).load( "get_temp.php" ); 
 			    $( "#set_temp" ).load( "set_temp.php" ); 
 			}
-			setInterval(function(){ poll(); }, 2500);
+			setInterval(function(){ poll(); }, <?php if( $pimatic['poll'] ) { echo $pimatic['poll']; } else { echo 5000; } ?>);
 		</script>
 	</head>
 	<body>
