@@ -34,6 +34,7 @@
 			
 			var setTemp = <?php echo getValue($therm['id'].'.temperatureSetpoint'); ?>;
 			var timer;
+			var wait = false;
 			
 			$(document).ready(function() {
 				
@@ -70,7 +71,7 @@
 			});
 			
 			function updateTemp(){
-    			
+    			wait = true;
     			if(setTemp > 30) {
         			setTemp = 30;
     			}
@@ -81,8 +82,9 @@
     			$("#set_temp .val").html(showTemp());   			
     			clearTimeout(timer);
     			timer = setTimeout(function(){
-                    $("#dump").load( "set_temp.php?temp=" + setTemp );
-                }, 1500);
+                    		$("#dump").load( "set_temp.php?temp=" + setTemp );
+                    		wait = false;
+                	}, 1500);
                 
 			}
 			
@@ -91,11 +93,13 @@
 			}
 			
 			function poll(){
-			    $("#get_temp .val").load( "get_temp.php?sensor" );
-			    $.get( "get_temp.php?setPoint", function( data ) {
-                  setTemp = parseFloat(data);
-                });
-			    $("#set_temp .val").html(showTemp());
+				if(!wait){
+			    		$("#get_temp .val").load( "get_temp.php?sensor" );
+			    		$.get( "get_temp.php?setPoint", function( data ) {
+                  				setTemp = parseFloat(data);
+                			});
+			    		$("#set_temp .val").html(showTemp());
+				}
 			}
 			
 			setInterval(function(){ poll(); }, <?php echo $pimatic['poll']; ?>);
