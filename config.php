@@ -16,6 +16,6 @@
 	//Temperature sensor
 	$temp['id'] = 'woonkamer-temp';		// ID of the temperature sensor
 	
-	//Lights
 	$light['id'] = 'woonkamer';			// ID of the light switch
+	//$light['id'] = '';				// Make empty if lights are not used
 ?>
