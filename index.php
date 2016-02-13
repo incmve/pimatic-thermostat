@@ -144,6 +144,7 @@
                     <span class="val"></span>
                     &deg;C
 				</div>
+				<?php if($light['id']){ ?>
 				<div class="lights">
 					<div class="lights-off">
 						<img src="images/light-off.png" alt=""/>
@@ -152,6 +153,7 @@
 						<img src="images/light-on.png" alt=""/>
 					</div>
 				</div>
+				<?php } ?>
 			</div>
 		</div>
 	</body>
