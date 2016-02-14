@@ -5,7 +5,7 @@
         global $app;
         if($_POST['password'] == $app['password']){
             setcookie('login', pass($app['password']), time()+3155692, "/");
-            header('location: index.php');
+            echo '<meta http-equiv="refresh" content="0">';
         } else {
          ?>
             <div class="content">
