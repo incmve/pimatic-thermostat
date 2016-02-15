@@ -1,6 +1,6 @@
 <?php	
-	include('config.php');
-	include('inc/functions.php');
+	include('../config.php');
+	include('functions.php');
 	if($_GET['turn'] == 'on'){
 		setValue($light['id'].'/turnOn');
 	} elseif($_GET['turn'] == 'off'){
