@@ -3,22 +3,18 @@
     
     function get_login(){
         global $app;
-        if($_POST['password'] == $app['password']){
-            setcookie('login', pass($app['password']), time()+3155692, "/");
-            echo '<meta http-equiv="refresh" content="0">';
-        } else {
-         ?>
-            <div class="content">
-                <div class="title slideDown">
-    				<?php echo $app['title']; ?>
-    			</div>
-                <form class="fadeIn" method="post">
-                    <input class="password_input" placeholder="Password" type="password" name="password"/>
-                    <input class="password_submit" type="submit" value="Login"/>
-                </form>
-            </div>
+        ?>
+        <div class="content">
+            <div class="title slideDown">
+				<?php echo $app['title']; ?>
+			</div>
+            <form class="fadeIn" method="post">
+                <input class="password_input" placeholder="Password" type="password" name="password"/>
+                <input class="password_submit" type="submit" value="Login"/>
+            </form>
+        </div>
    <?php 
-        }
+        
     }
     
     function get_thermostat(){ 
