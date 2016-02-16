@@ -5,7 +5,7 @@
     	$value = 0;
     	
     	if(isset($_GET['sensor'])){
-        	$value = getValue($temp['id'].'.temperature'); 	
+        	$value = getValue($temp['id']); 	
         	if(!$value){
         		$value = "- ";
         	}

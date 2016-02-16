@@ -19,7 +19,7 @@
 	
 	
 	//Temperature sensor
-	$temp['id']      = 'woonkamer-temp';	// ID of the temperature sensor
+	$temp['id']      = 'woonkamer-temp.temperature';	// The full variable of the device like: livingroom.temperature
 	
 	//Lights
 	$light['id']     = 'woonkamer'			// ID of the light switch
