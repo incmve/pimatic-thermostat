@@ -1,4 +1,5 @@
 <?php
+	if(count(get_included_files()) ==1) die("Not permitted");
 	
 	function getValue($var) {
 		global $pimatic;
@@ -21,6 +22,7 @@
 		return $result;
 		
     }
+    
     function setValue($var){
 	    global $pimatic;
 	    if($pimatic['ssl']){
@@ -31,4 +33,21 @@
 	    $url .= $pimatic['user'] . ":" . $pimatic['pass'] . "@" . $pimatic['host'] . ":" . $pimatic['port'].'/api/device/'.$var;
 	    file_get_contents($url);
     }
+    
+    function loggedIn(){
+        global $app;
+        if($_COOKIE['login'] == pass($app['password']) or $app['password'] == '') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    function pass($string){
+    	$salt = "Dc9ri12orRSDhNUd";
+    	$pepper = "5%1vF3x5";
+    	$string = md5($pepper.$string);
+    	return hash("sha256", md5($salt.$string).sha1($string));
+    }
+    
 ?>
